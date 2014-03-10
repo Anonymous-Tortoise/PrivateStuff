@@ -1,0 +1,158 @@
+Public Class Form1
+    '-----------------------CONTROLS-------------------------
+    Private Sub Form1_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
+        ' Sets Handled to true to prevent other controls from 
+        ' receiving the key if an arrow key was pressed
+        Dim bHandled As Boolean = False
+        Select Case e.KeyCode
+            Case Keys.Right
+                If lblUpLeft.BackColor = Color.Cyan Then
+                    lblUpLeft.BackColor = Color.Black
+                    lblUpCenter.BackColor = Color.Cyan
+                ElseIf lblUpCenter.BackColor = Color.Cyan Then
+                    lblUpCenter.BackColor = Color.Black
+                    lblUpRight.BackColor = Color.Cyan
+                ElseIf lblCenterLeft.BackColor = Color.Cyan Then
+                    lblCenterLeft.BackColor = Color.Black
+                    lblCenter.BackColor = Color.Cyan
+                ElseIf lblCenter.BackColor = Color.Cyan Then
+                    lblCenter.BackColor = Color.Black
+                    lblCenterRight.BackColor = Color.Cyan
+                ElseIf lblDownLeft.BackColor = Color.Cyan Then
+                    lblDownLeft.BackColor = Color.Black
+                    lblDownCenter.BackColor = Color.Cyan
+                ElseIf lblDownCenter.BackColor = Color.Cyan Then
+                    lblDownCenter.BackColor = Color.Black
+                    lblDownRight.BackColor = Color.Cyan
+                End If
+                'level 1
+                DeathScenario1()
+                DeathScenario2()
+                Level1Win()
+                e.Handled = True
+            Case Keys.Left
+                If lblUpRight.BackColor = Color.Cyan Then
+                    lblUpRight.BackColor = Color.Black
+                    lblUpCenter.BackColor = Color.Cyan
+                ElseIf lblUpCenter.BackColor = Color.Cyan Then
+                    lblUpCenter.BackColor = Color.Black
+                    lblUpLeft.BackColor = Color.Cyan
+                ElseIf lblCenterRight.BackColor = Color.Cyan Then
+                    lblCenterRight.BackColor = Color.Black
+                    lblCenter.BackColor = Color.Cyan
+                ElseIf lblCenter.BackColor = Color.Cyan Then
+                    lblCenter.BackColor = Color.Black
+                    lblCenterLeft.BackColor = Color.Cyan
+                ElseIf lblDownRight.BackColor = Color.Cyan Then
+                    lblDownRight.BackColor = Color.Black
+                    lblDownCenter.BackColor = Color.Cyan
+                ElseIf lblDownCenter.BackColor = Color.Cyan Then
+                    lblDownCenter.BackColor = Color.Black
+                    lblDownLeft.BackColor = Color.Cyan
+                End If
+                'level 1
+                DeathScenario1()
+                DeathScenario2()
+                Level1Win()
+                e.Handled = True
+            Case Keys.Up
+                If lblDownCenter.BackColor = Color.Cyan Then
+                    lblCenter.BackColor = Color.Cyan
+                    lblDownCenter.BackColor = Color.Black
+                ElseIf lblCenter.BackColor = Color.Cyan Then
+                    lblCenter.BackColor = Color.Black
+                    lblUpCenter.BackColor = Color.Cyan
+                ElseIf lblDownLeft.BackColor = Color.Cyan Then
+                    lblDownLeft.BackColor = Color.Black
+                    lblCenterLeft.BackColor = Color.Cyan
+                ElseIf lblCenterLeft.BackColor = Color.Cyan Then
+                    lblCenterLeft.BackColor = Color.Black
+                    lblUpLeft.BackColor = Color.Cyan
+                ElseIf lblDownRight.BackColor = Color.Cyan Then
+                    lblCenterRight.BackColor = Color.Cyan
+                    lblDownRight.BackColor = Color.Black
+                ElseIf lblCenterRight.BackColor = Color.Cyan Then
+                    lblCenterRight.BackColor = Color.Black
+                    lblUpRight.BackColor = Color.Cyan
+                End If
+                'level 1
+                DeathScenario1()
+                DeathScenario2()
+                Level1Win()
+                e.Handled = True
+            Case Keys.Down
+                If lblUpLeft.BackColor = Color.Cyan Then
+                    lblUpLeft.BackColor = Color.Black
+                    lblCenterLeft.BackColor = Color.Cyan
+                ElseIf lblCenterLeft.BackColor = Color.Cyan Then
+                    lblCenterLeft.BackColor = Color.Black
+                    lblDownLeft.BackColor = Color.Cyan
+                ElseIf lblUpCenter.BackColor = Color.Cyan Then
+                    lblCenter.BackColor = Color.Cyan
+                    lblUpCenter.BackColor = Color.Black
+                ElseIf lblCenter.BackColor = Color.Cyan Then
+                    lblCenter.BackColor = Color.Black
+                    lblDownCenter.BackColor = Color.Cyan
+                ElseIf lblUpRight.BackColor = Color.Cyan Then
+                    lblUpRight.BackColor = Color.Black
+                    lblCenterRight.BackColor = Color.Cyan
+                ElseIf lblCenterRight.BackColor = Color.Cyan Then
+                    lblCenterRight.BackColor = Color.Black
+                    lblDownRight.BackColor = Color.Cyan
+                End If
+                'level 1
+                DeathScenario1()
+                DeathScenario2()
+                Level1Win()
+                e.Handled = True
+        End Select
+    End Sub
+    Private Sub level1Load()
+        lblCenter.Text = " "
+        lblDownCenter.BackColor = Color.Cyan
+        lblCenterLeft.BackColor = Color.Crimson
+        lblCenterRight.BackColor = Color.Crimson
+        lblUpRight.BackColor = Color.Orange
+        MessageBox.Show("Don't Touch the Red Boxes!", " ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+        Exit Sub
+    End Sub
+    '---------------------------------------------LEVEL 1---------------------------------------------------
+    Private Sub DeathScenario1()
+        If lblCenterLeft.BackColor = Color.Cyan Then
+            MessageBox.Show("You Died!", " ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            ResetLevel1()
+        End If
+    End Sub
+    Private Sub DeathScenario2()
+        If lblCenterRight.BackColor = Color.Cyan Then
+            MessageBox.Show("You Died!", " ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            ResetLevel1()
+        End If
+    End Sub
+    Private Sub ResetLevel1()
+        lblDownCenter.BackColor = Color.Cyan
+        lblCenterLeft.BackColor = Color.Crimson
+        lblCenterRight.BackColor = Color.Crimson
+        lblUpRight.BackColor = Color.Orange
+        MessageBox.Show("Don't Touch the Red Boxes! Use arrow keys to move!", " ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        lblCenter.Text = " "
+    End Sub
+    Private Sub Level1Win()
+        If lblUpRight.BackColor = Color.Cyan Then
+            MessageBox.Show("You win!", " ", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            lblCenter.Text = "START LEVEL 2"
+        End If
+    End Sub
+    '------------CLICK ON CENTER---------------
+    Private Sub lblCenter_Click(sender As Object, e As EventArgs) Handles lblCenter.Click
+        If lblCenter.Text = "START LEVEL 1" Then
+            level1Load()
+
+        End If
+    End Sub
+'--------------------------------------------LEVEL 2-------------------------------------------------------
+Private Sub Level2Load()
+
+    End Sub
+End Class
