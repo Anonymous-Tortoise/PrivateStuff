@@ -117,6 +117,19 @@ Public Class Form1
 
         Exit Sub
     End Sub
+    '----------------------------------CLEAR FORM---------------------------------
+    Private Sub Clear()
+        lblUpLeft.BackColor = Color.Black
+        lblUpCenter.BackColor = Color.Black
+        lblUpRight.BackColor = Color.Black
+        lblCenterLeft.BackColor = Color.Black
+        lblCenter.BackColor = Color.Black
+        lblCenterRight.BackColor = Color.Black
+        lblDownLeft.BackColor = Color.Black
+        lblDownCenter.BackColor = Color.Black
+        lblDownRight.BackColor = Color.Black
+    End Sub
+
     '---------------------------------------------LEVEL 1---------------------------------------------------
     Private Sub DeathScenario1()
         If lblCenterLeft.BackColor = Color.Cyan Then
@@ -142,17 +155,23 @@ Public Class Form1
         If lblUpRight.BackColor = Color.Cyan Then
             MessageBox.Show("You win!", " ", MessageBoxButtons.OK, MessageBoxIcon.Information)
             lblCenter.Text = "START LEVEL 2"
+            Clear()
         End If
     End Sub
     '------------CLICK ON CENTER---------------
     Private Sub lblCenter_Click(sender As Object, e As EventArgs) Handles lblCenter.Click
         If lblCenter.Text = "START LEVEL 1" Then
             level1Load()
-
+        ElseIf lblCenter.Text = "START LEVEL 2" Then
+            Level2Load()
         End If
     End Sub
 '--------------------------------------------LEVEL 2-------------------------------------------------------
 Private Sub Level2Load()
+        lblCenter.BackColor = Color.Crimson
+        lblCenterRight.BackColor = Color.Crimson
+        lblDownRight.BackColor = Color.Crimson
+        lblDownCenter.BackColor = Color.Cyan
 
     End Sub
 End Class
